@@ -1,0 +1,69 @@
+<hibernate-mapping package="model">
+ <class name="model.Commentable"   abstract="true">
+        <id name="idCommentable" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+    <!--<discriminator column="DISC" type="string" />-->
+	<!--<class name="Commentable" table="COMMENTABLE">-->
+		
+		
+		<!-- <id name="idRestaurant" column="ID_RESTAURANT">
+			<generator class="native" />
+		</id>-->
+		
+
+				
+			<!-- 
+	<any name="Commentable" meta-type="string" id-type="long">
+    <meta-value value="RESTAURANT" class="Restaurant"/>
+    <meta-value value="FOODDISH" class="FoodDish"/>
+    <column name="COMMENTABLE_CLASS"/>
+    <column name="COMMENTABLE_ID"/>
+    
+</any>		-->
+
+
+	<union-subclass name="Restaurant"  >
+		<!-- <id name="idRestaurant" column="ID_RESTAURANT">
+			<generator class="native" />
+		</id>-->
+		 
+		<property name="idRestaurant" not-null="true" />
+		
+		<property name="name" not-null="true" />
+
+		<property name="dateCreation" not-null="true" />
+		
+		<property name="lowLogic" not-null="true" />
+
+		<many-to-one name="ubication"
+					 column="ID_UBICATION"
+					 cascade="all"/>
+					 
+		<set name="menu" cascade="all" inverse="true">
+			<key column="ID_RESTAURANT" not-null="true"/>
+				 
+			<one-to-many class="FoodDish"/>		
+		</set>
+		
+		<many-to-one name="category"
+					 column="ID_CATEGORY"
+					 not-null="true"
+					 cascade="all"/>
+		
+		<set name="configuration" cascade="all" inverse="true">
+			<key column="ID_RESTAURANT" not-null="true"/>
+				 
+			<one-to-many class="Configuration"/>	 
+		
+		</set>
+				
+			
+		
+	</union-subclass>
+
+
+	</class>
+
+</hibernate-mapping>

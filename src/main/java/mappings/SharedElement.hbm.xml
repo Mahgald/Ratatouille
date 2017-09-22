@@ -1,0 +1,22 @@
+<hibernate-mapping package="model">
+	<class name="SharedElement" table="SHAREDFOODDISH">
+		<id name="idSharedFoodDish" column="ID_SHAREDFOODDISH">
+			<generator class="native" />
+		</id>
+		
+		<property name="message" not-null="true" />
+
+		<property name="sharedDate" not-null="true" />
+
+		<many-to-one name="foodDish"
+					 column="ID_FOODDISH"
+					 not-null="true"
+					 cascade="all"/>
+					 
+		<many-to-one name="userShare"
+					 column="ID_USERSHARE"
+					 not-null="true"
+					 cascade="all"/>
+		
+	</class>
+</hibernate-mapping>

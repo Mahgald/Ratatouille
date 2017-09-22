@@ -1,0 +1,34 @@
+<hibernate-mapping package="model">
+	<class name="Commentary" table="COMMENTARY">
+		<id name="idCommentary" column="ID_COMMENTARY">
+			<generator class="native" />
+		</id>
+		
+		<property name="description" not-null="true" />
+
+		<property name="date" not-null="true" />
+		
+		<many-to-one name="user"
+					 column="ID_USER"
+					 cascade="all"/>
+		
+		<!-- <many-to-one name="content"
+					 column="ID_COMMENTABLE"
+					 cascade="all"/> -->
+		
+		<property name="valoration" >
+             <type name="org.hibernate.type.EnumType">
+                 <param name="enumClass">model.Valoration</param>
+                 <param name="type">4</param>
+             </type>
+         </property>	
+	
+		<joined-subclass name="CommentRestaurant" table="COMMENTRESTAURANT">
+			<key column="ID_COMMENTARY"/>
+			
+			
+		</joined-subclass>
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+#map-canvas {
+    padding: 200px;
+  }
+.map{
+	width:100%;
+	float: right;
+	
+}
+.contenedor {
+    width:100%;
+}
+
+
+#modal-map-canvas{
+  padding: 200px;
+}
+
+

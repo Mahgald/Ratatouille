@@ -1,0 +1,26 @@
+<hibernate-mapping package="model">
+	<class name="FoodDish" table="FOODISH" ><!-- model.Commentable extends="model.Commentable" -->
+		<id name="idFoodDish" column="ID_FOODDISH">
+			<generator class="native" />
+		</id>
+		
+		
+		
+		<property name="name" not-null="true" />
+		<property name="price" not-null="true" />
+		<property name="description" not-null="true" />
+		
+		<many-to-one name="restaurant"
+		             column="ID_RESTAURANT"
+		             not-null="true"
+		             cascade="all"/>
+		
+	<!-- 	 FALTA LOS COMENTARIOS -->
+
+		<list name="commentaries" cascade="all"> 
+    		<key column="ID_FOODDISH" /> 
+    		<index column="order"/>
+    		<one-to-many class="Commentary" /> 
+		</list>
+	</class>
+</hibernate-mapping>

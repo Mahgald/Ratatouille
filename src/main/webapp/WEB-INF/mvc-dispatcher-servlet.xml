@@ -1,0 +1,150 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Specific Controllers package -->
+	<context:component-scan base-package="controller"/>
+	
+
+	<!-- Getting Database properties -->	
+	<context:property-placeholder location="classpath:hibernate.properties"/>
+
+	<!-- interceptor para sesion -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/User/users/**"/> 
+			<mvc:exclude-mapping path="/Restaurant/Search/**"/> 
+			<mvc:exclude-mapping path="/Query/**"/> 
+    		<bean class="interceptor.InterceptorToSession" />
+		</mvc:interceptor>
+
+	</mvc:interceptors> 
+
+
+	<!-- View Resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- Specifying the Resource location to load .Js, .Css, etc  -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven />
+	
+	
+	
+	<!-- DataSource -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	
+		<property name="driverClass" value="${database.driverClass}" />
+		<property name="jdbcUrl" value="${database.url}" />
+		<property name="user" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="acquireIncrement" value="${connection.acquireIncrement}" />
+		<property name="minPoolSize" value="${connection.minPoolSize}" />
+		<property name="maxPoolSize" value="${connection.maxPoolSize}" />
+		<property name="maxIdleTime" value="${connection.maxIdleTime}" />
+		
+	</bean>
+
+	<!-- Hibernate SessionFactory -->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="conecction.url">jdbc:mysql://localhost:3306/grupo7</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+				<prop key="hibernate.connection.charSet">UTF-8</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
+			</props>
+
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				
+				<value>model.Ubication</value>
+				<value>model.User</value>
+				<value>model.Responsible</value>
+				<value>model.SharedElement</value>
+				<value>model.DomainObject</value>
+				<value>model.Notification</value>
+				<value>model.SpecialNotification</value>
+				<value>model.Commentary</value>
+				<value>model.FriendRequest</value>
+				<value>model.DomainEvent</value>
+				<value>model.RankingUser</value>
+				<value>model.Visitor</value>
+				<value>model.Commensal</value>
+				<value>model.Gourmet</value>
+				<value>model.Restaurant</value>
+				<value>model.Configuration</value>
+				<value>model.FilterAbstract</value>
+				<value>model.FilterByCategorieUser</value>
+				<value>model.FoodDish</value>
+				<value>model.RestaurantCategory</value>
+				<value>model.Silver</value>
+				<value>model.Gold</value>
+				<value>model.Platinum</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Transaction -->
+	
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	
+	<!-- DAOs -->
+	<bean id="ubicationDAO" class="dao.UbicationDao" />
+	<bean id="userDAO" class="dao.UserDao" />
+	<bean id="commensalDAO" class="dao.CommensalDao" />
+	<bean id="commentaryDAO" class="dao.CommentaryDao" />
+	<bean id="configurationDAO" class="dao.ConfigurationDao" />
+	<bean id="foodDishDAO" class="dao.FoodDishDao" />
+	<bean id="friendRequestDAO" class="dao.FriendRequestDao" />
+	<bean id="goldDAO" class="dao.GoldDao" />
+	<bean id="gourmetDAO" class="dao.GourmetDao" />
+	<bean id="notificationDAO" class="dao.NotificationDao" />
+	<bean id="platinumDAO" class="dao.PlatinumDao" />
+	<bean id="rankingDAO" class="dao.RankingDao" />
+	<bean id="restaurantCategoryDAO" class="dao.RestaurantCategoryDao" />
+	<bean id="restaurantDAO" class="dao.RestaurantDao" />
+	<bean id="responsibleDAO" class="dao.ResponsibleDao" />
+	
+	<bean id="silverDAO" class="dao.SilverDao" />
+	<bean id="visitorDAO" class="dao.VisitorDao" />
+	
+
+	<!-- Services -->
+	<bean id="ubicationService" class="service.UbicationService" />	
+	<bean id="restaurantService" class="service.RestaurantService" />	
+	<bean id="responsibleService" class="service.ResponsibleService" />	
+	<bean id="userService" class="service.UserService" />	
+	<bean id="friendRequestService" class="service.FriendRequestService" />	
+	<bean id="foodDishService" class="service.FoodDishService" />	
+	<bean id="commentaryService" class="service.CommentaryService" />
+</beans>

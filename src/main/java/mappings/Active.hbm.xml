@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-jul-2017 18:58:52 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="model.Active" table="ACTIVE" abstract="true">
+        <id name="idActive" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="active" type="java.lang.Boolean">
+            <column name="ACTIVE" />
+        </property>
+    </class>
+</hibernate-mapping>
+<!-- NO VA---------------------------------------- -->

@@ -1,0 +1,10 @@
+<hibernate-mapping package="model">
+ <union-subclass name="model.Shareable"   extends="model.Commentable" abstract="true">
+        <id name="idShareable" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        
+        	</union-subclass>
+
+</hibernate-mapping>

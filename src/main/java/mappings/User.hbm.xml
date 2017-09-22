@@ -1,0 +1,54 @@
+<hibernate-mapping package="model">
+	<class name="User" table="USER">
+		<id name="idUser" column="ID_USER">
+			<generator class="native" />
+		</id>
+		<property name="name" not-null="true" />
+		<property name="lastName" not-null="true" />
+		<property name="email" not-null="true" />
+		<property name="password" not-null="true" />
+		<property name="birthdate" not-null="true" />
+		<property name="dateCreation" not-null="true" />
+		
+		<property name="lowLogic" not-null="true" />
+		
+		<many-to-one name="ranking"
+					 column="ID_RANKING"
+					 not-null="true"
+					 cascade="all"/>
+		<set name="friends"
+			 table="FRIENDS"
+			 cascade="all"
+			 inverse="true">
+			 <key column="ID_USER"/>
+			 <many-to-many column="ID_FRIEND"
+			 			   class="User"/>
+		</set>
+		<set name="commentaries" cascade="all" inverse="true">
+				<key column="ID_USER"
+				 not-null="true"/>
+				<one-to-many class="User"/>	 
+		</set>
+		<set name="requestsSubmitted" cascade="all" inverse="true">
+				<key column="ID_USER"
+				 not-null="true"/>
+				<one-to-many class="User"/>	 
+		</set>
+		<set name="received" cascade="all" inverse="true">
+				<key column="ID_USER"
+				 not-null="true"/>
+				<one-to-many class="User"/>	 
+		</set>
+
+		<joined-subclass name="Responsible" table="RESPONSIBLE">
+			<key column="ID_USER"/>
+			<property name="dateMakeResponsible" not-null="true" />
+			<set name="configurations" cascade="all" inverse="true">
+				<key column="ID_RESPONSIBLE"
+				 not-null="true"/>
+				<one-to-many class="Configuration"/>	 
+			</set>	
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

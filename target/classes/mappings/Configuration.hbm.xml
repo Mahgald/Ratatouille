@@ -1,0 +1,27 @@
+<hibernate-mapping package="model">
+	<class name="Configuration" table="CONFIGURATION" >
+		
+		<id name="idConfiguration" column="ID_CONFIGURATION" >
+			<generator class="native" />
+		</id>
+		
+		<property name="dateOfAsociation" not-null="true" />
+		<property name="dateOfLastModification" not-null="true" />
+		<property name="lowLogic" not-null="true" />
+	
+		<many-to-one name="restaurant"
+		             column="ID_RESTAURANT"
+		             not-null="true"
+		             cascade="all"/>	
+		             
+		<many-to-one name="responsible"
+		             column="ID_RESPONSIBLE"
+		             not-null="true"
+		             cascade="all"/>             
+		             		 
+		
+		<!-- FALTA MAPEAR EL FILTRO -->
+			
+		
+	</class>
+</hibernate-mapping>

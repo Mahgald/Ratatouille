@@ -1,0 +1,10 @@
+<hibernate-mapping package="model">
+	<class name="Ubication" table="UBICATION" lazy="false">
+		<id name="idUbication" column="ID_UBICATION">
+			<generator class="native" />
+		</id>
+		<property name="latitude" not-null="true" />
+		<property name="longitude" not-null="true" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<hibernate-mapping package="model">
+	<class name="RankingUser" table="RANKING" abstract="true">
+		
+		<id name="idRanking" column="ID_RANKING">
+			<generator class="native" />
+		</id>
+		
+		<property name="comments" not-null="false" />
+		
+		
+		<one-to-one name="user" property-ref="ranking"/>
+			
+				
+		<joined-subclass name="Visitor" table="VISITOR">
+			<key column="ID_USER"/>
+		</joined-subclass>
+		
+		<joined-subclass name="Commensal" table="COMMENSAL">
+			<key column="ID_USER"/>
+		</joined-subclass>
+		
+		<joined-subclass name="Gourmet" table="GOURMET">
+			<key column="ID_USER"/>
+		</joined-subclass>
+		
+		
+	</class>
+</hibernate-mapping>

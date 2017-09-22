@@ -1,0 +1,30 @@
+<hibernate-mapping package="model">
+	<class name="FriendRequest" table="FRIENDREQUEST">
+		
+		<id name="idFriendRequest" column="ID_FRIENDREQUEST">
+			<generator class="native" />
+		</id>
+		
+		<property name="requestStatus" not-null="true" column="status" />
+		
+		<property name="requestEvaluated"/>
+		
+		<property name="dateRequest" not-null="false" />
+		
+		<property name="dateReject" not-null="false" />
+		
+		<property name="dateOfFriendShip" not-null="false" />
+		
+		<many-to-one name="sender"
+		             column="ID_SENDER"
+		             not-null="true"
+		             cascade="all"/>	
+		             
+		<many-to-one name="recepter"
+		             column="ID_RECEPTER"
+		             not-null="true"
+		             cascade="all"/>  
+		
+		
+	</class>
+</hibernate-mapping>

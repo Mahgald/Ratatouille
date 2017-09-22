@@ -1,0 +1,291 @@
+/* NAVBAR STYLES */
+
+.ratatouille{
+	font-family: 'Indie Flower', cursive;
+}
+.highlight{
+	color:#b71c1c;
+	font-size: 220%;
+}
+
+.highlightAdress{
+	color:#b71c1c;
+	font-size: 150%;
+}
+
+.cursive{
+	font-size: 220%;
+}
+.cursiveAdress{
+	font-size: 150%;
+}
+
+.fa-frown-o{
+	color:red;
+}
+.fa-smile-o{
+	color:green;
+}
+
+
+
+.navbar {
+  position: fixed;
+  height:43px;
+  margin-bottom:90%;
+  border: 1px solid transparent;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 10px;
+   	font-size: 200%;
+    line-height: 21px;
+    height: 50px;
+}
+.navbar-nav {
+    float: left;
+    margin: -6px;
+   	
+}
+.badge-notify{
+   background:#000;
+   color:#FFF;
+   position:relative;
+   top: -16px;
+   left: 22px;
+  }
+
+.navbar-nav > li > a {
+    padding-top: 14.15px;
+    padding-bottom: 13px;
+ }
+.content{
+	margin-left: 14%;
+}
+
+.foodMarg{
+	margin-left: 6%;
+}
+
+.navbar-default, .headers{
+  background-color: #b71c1c;
+  border-color: #b71c1c;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  color: #FFF;
+  background: #b71c1c;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #b71c1c;
+    color: #ffffff;
+}
+ 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+   color: #FFF;
+   background: #b71c1c;
+}
+
+.glycolor{
+	color:#FFF;
+}
+
+.glycolor:hover, 
+.glycolor:active,
+.glycolor:focus {color:#000 !important;}
+
+.footerPosition{
+	padding-left: 450px;
+}
+
+.footer-margin{
+	margin-top: 70px;
+}
+
+
+.navbar-buttons-position{
+	float:right;
+	margin-right: 10%;
+}
+
+.distanceInput{
+	width: 60px;
+}
+
+.notifications{
+    top: 73%;
+}
+
+.context{
+	top:111%;
+}
+
+
+.input-dropdown {
+    position: relative;
+    display: inline-block;
+}
+.input-dropdown .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 2px;
+    background: #EEE;
+}
+.input-dropdown .dropdown div {
+    cursor: pointer;
+    padding: 2px 5px;
+}
+.input-dropdown input:focus + .dropdown {
+    display: block;
+}
+
+.restComment{
+	text-decoration: none !important;
+	color:#b71c1c;
+}	
+
+/* */
+
+.fooddishMenu{
+	position: absolute;
+	margin-top: 30%;
+
+}
+.media-position{
+	padding-bottom: 50%;
+}
+.btn-ratatouille {
+  color: #ffffff;
+  background-color: #b71c1c;
+  border-color: #b71c1c;
+}
+.btn-ratatouille:focus,
+.btn-ratatouille.focus {
+  color: #ffffff;
+  background-color: #ef5350;
+  border-color: #ef5350;
+}
+.btn-ratatouille:hover {
+  color: #ffffff;
+  background-color: #ef5350;
+  border-color: #ef5350;
+}
+.commentaryScroll{
+	overflow-y:auto ;
+	min-height: 0px;
+	max-height: 280px;
+}
+
+.fooddishScroll{
+	overflow-y:auto ;
+	min-height: 0px;
+	max-height: 700px;
+	
+	
+}
+.menuPos{
+	padding-top: 20%;
+	margin-bottom: -20%;
+	margin-left: 40%;
+	
+}
+
+.bot{
+	margin-bottom: 40px;
+}
+
+
+
+.modal-title{
+	color: #ffffff;
+	font-size: 150%;
+	font-family: 'Arvo', serif;
+}
+
+.modal-subtitle{
+	color: #ffffff;
+	font-size: 100%;
+	font-family: 'Arvo', serif;
+}
+
+.checkbox-position{
+	margin-left: 25%;
+}
+
+.checkbox-title-position{
+	margin-left: 35%;
+}
+
+.radio-position{
+	margin-left: 35%;
+}
+
+.radio-title-position{
+	margin-left: 40%;
+}
+
+.divider{
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+/* SIDEBARS */
+
+body{margin-top:2%;}
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+
+.mini-submenu{
+  display:none;  
+  background-color: rgba(0, 0, 0, 0);  
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  padding: 9px;  
+  /*position: relative;*/
+  width: 42px;
+
+}
+
+.mini-submenu:hover{
+  cursor: pointer;
+}
+
+.mini-submenu .icon-bar {
+  border-radius: 1px;
+  display: block;
+  height: 2px;
+  width: 22px;
+  margin-top: 3px;
+}
+
+.mini-submenu .icon-bar {
+  background-color: #000;
+}
+
+#slide-submenu{
+  background: rgba(0, 0, 0, 0.45);
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#slide-rightsubmenu{
+  background: rgba(0, 0, 0, 0.45);
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;'
+}
+
+
+
+/* FOOTER*/

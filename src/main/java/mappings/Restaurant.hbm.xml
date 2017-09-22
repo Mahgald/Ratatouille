@@ -1,0 +1,32 @@
+<hibernate-mapping package="model">
+	<class name="Restaurant" table="RESTAURANT">
+		<id name="idRestaurant" column="ID_RESTAURANT">
+			<generator class="native" />
+		</id>
+		
+		<property name="name" not-null="true" />
+		<property name="dateCreation" not-null="true" />
+
+		<property name="lowLogic" not-null="true" />
+
+		<many-to-one name="ubication"
+					 column="ID_UBICATION"
+					 cascade="all"/>
+		<set name="menu" cascade="all" inverse="true">
+			<key column="ID_RESTAURANT" not-null="true"/>
+			<one-to-many class="FoodDish"/>		
+		</set>
+		<many-to-one name="category"
+					 column="ID_CATEGORY"
+					 not-null="true"
+					 cascade="all"/>
+		<set name="configuration" cascade="all" inverse="true">
+			<key column="ID_RESTAURANT" not-null="true"/>
+			<one-to-many class="Configuration"/>	 
+		
+		</set>
+				
+			
+		
+	</class>
+</hibernate-mapping>

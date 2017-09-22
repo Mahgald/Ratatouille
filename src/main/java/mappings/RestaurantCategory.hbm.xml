@@ -1,0 +1,48 @@
+<hibernate-mapping package="model">
+	<class name="RestaurantCategory" table="CATEGORY" abstract="true">
+		
+		<id name="idCategory" column="ID_CATEGORY">
+			<generator class="native" />
+		</id>
+		
+		<one-to-one name="restaurant" property-ref="category"/>
+		
+		<property name="benefit" >
+             <type name="org.hibernate.type.EnumType">
+                 <param name="enumClass">model.Benefit</param>
+                 <param name="type">4</param>
+             </type>
+         </property>
+			
+			
+		<joined-subclass name="Silver" table="SILVER">
+			<key column="ID_RESTAURANT"/>
+			<property name="visitorPosCont" not-null="true" />
+		
+			<property name="commensalPosCont" not-null="true" />
+		
+			<property name="gourmetPosCont" not-null="true" />
+		</joined-subclass>
+		
+		<joined-subclass name="Gold" table="GOLD">
+			<key column="ID_RESTAURANT"/>
+			<property name="visitorPosCont" not-null="true" />
+		
+			<property name="commensalPosCont" not-null="true" />
+		
+			<property name="gourmetPosCont" not-null="true" />
+		</joined-subclass>	
+		
+		<joined-subclass name="Platinum" table="PLATINUM">
+			<key column="ID_RESTAURANT"/>
+			<property name="visitorPosCont" not-null="true" />
+		
+			<property name="commensalPosCont" not-null="true" />
+		
+			<property name="gourmetPosCont" not-null="true" />
+		</joined-subclass>		
+				
+				
+		
+	</class>
+</hibernate-mapping>

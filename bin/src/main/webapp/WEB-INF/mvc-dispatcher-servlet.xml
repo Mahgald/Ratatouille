@@ -1,0 +1,123 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	 <context:component-scan base-package="controller" />
+ 
+    <mvc:annotation-driven />
+ 
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/views/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+	<!-- Getting Database properties -->	
+	<context:property-placeholder location="classpath:hibernate.properties"/>
+
+	
+
+	<!-- Specifying the Resource location to load .Js, .Css, etc  -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- DataSource -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	
+		<property name="driverClass" value="${database.driverClass}" />
+		<property name="jdbcUrl" value="${database.url}" />
+		<property name="user" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+
+		<property name="acquireIncrement" value="${connection.acquireIncrement}" />
+		<property name="minPoolSize" value="${connection.minPoolSize}" />
+		<property name="maxPoolSize" value="${connection.maxPoolSize}" />
+		<property name="maxIdleTime" value="${connection.maxIdleTime}" />
+		
+	</bean>
+
+	<!-- Hibernate SessionFactory -->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="conecction.url">jdbc:mysql://localhost:3306/grupo7</prop>
+
+				<prop key="hibernate.connection.useUnicode">true</prop>
+	
+				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+				
+				<prop key="hibernate.connection.charSet">UTF-8</prop>
+				
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
+			</props>
+		</property>
+		
+		<property name="annotatedClasses">
+			<list>
+			<!-- 	<value>model.User</value>
+				
+				<value>model.Combination</value>
+				<value>model.Commensal</value>
+				<value>model.Commentable</value>
+				<value>model.Commentary</value>
+				<value>model.CommentRestaurant</value>
+				<value>model.Configuration</value>
+				<value>model.Filter</value>
+				<value>model.FilterByCategorieUser</value>
+				<value>model.FoodDish</value>
+				<value>model.FriendRequest</value>
+				<value>model.FriendRequestNotification</value>
+				<value>model.Friends</value>
+				<value>model.Gold</value>
+				<value>model.Gourmet</value>
+				<value>model.Notificable</value>
+				<value>model.NotificableSpecial</value>
+				<value>model.Notification</value>
+				<value>model.Platinum</value>
+				<value>model.RankingUser</value>
+				<value>model.Restaurant</value>
+				<value>model.RestaurantCategory</value>
+				<value>model.Shareable</value>
+				<value>model.SharedFoodDish</value>
+				<value>model.Silver</value>
+				
+				<value>model.UsersToShare</value>
+				<value>model.Visitor</value> 
+			
+			-->
+			<value>model.Ubication</value>
+			</list>
+		
+		
+		</property>
+		
+		
+		<!--  <property name="packagesToScan" ref="java.model"></property>--> 
+	</bean>
+
+	<!-- Transaction -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>
